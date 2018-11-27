@@ -1,0 +1,189 @@
+default  partial alphanumeric_keys alternate_group
+xkb_symbols "basic" {
+	include "emoji(simple)"
+
+	name[Group1] = "Emoji";
+
+	key <AB01> { [       NoSymbol,       NoSymbol,          U037D,          U03FF ] };
+	key <AB02> { [       NoSymbol,       NoSymbol,     rightarrow,      leftarrow ] };
+	key <AB03> { [       NoSymbol,       NoSymbol,      copyright                 ] };
+	key <AB04> { [       NoSymbol,       NoSymbol,          U03D6                 ] };
+	key <AB05> { [       NoSymbol,       NoSymbol,          U03D0                 ] };
+	key <AB06> { [       NoSymbol,       NoSymbol,          U0374,          U0375 ] };
+	key <AB07> { [       NoSymbol,       NoSymbol,          U03FB,          U03FA ] };
+	key <AB08> { [       NoSymbol,       NoSymbol,  guillemotleft                 ] };
+	key <AB09> { [       NoSymbol,       NoSymbol, guillemotright, periodcentered ] };
+	key <AC03> { [       NoSymbol,       NoSymbol,      downarrow,        uparrow ] };
+	key <AC04> { [       NoSymbol,       NoSymbol,          U03D5                 ] };
+	key <AC05> { [       NoSymbol,       NoSymbol,          U03DD,          U03DC ] };
+	key <AC07> { [       NoSymbol,       NoSymbol,          U037C,          U03FE ] };
+	key <AC08> { [       NoSymbol,       NoSymbol,          U03DF,          U03DE ] };
+	key <AC09> { [       NoSymbol,       NoSymbol,          U03F2,          U03F9 ] };
+	key <AC10> { [       NoSymbol,       NoSymbol,     dead_acute,     dead_psili ] };
+	key <AC11> { [       NoSymbol,       NoSymbol,     dead_grave,     dead_dasia ] };
+	key <AD01> { [       NoSymbol,       NoSymbol, periodcentered                 ] };
+	key <AD02> { [       NoSymbol,       NoSymbol,          U03DB,          U03DA ] };
+	key <AD04> { [       NoSymbol,       NoSymbol,     registered,          U03F1 ] };
+	key <AD07> { [       NoSymbol,       NoSymbol,          U03D1,          U03F4 ] };
+	key <AD08> { [       NoSymbol,       NoSymbol,          U037B,          U03FD ] };
+	key <AD10> { [       NoSymbol,       NoSymbol,          U03E1,          U03E0 ] };
+	key <AD11> { [       NoSymbol,       NoSymbol,     dead_tilde,    dead_macron ] };
+	key <AD12> { [       NoSymbol,       NoSymbol,      dead_iota,     dead_breve ] };
+	key <AE01> { [       NoSymbol,       NoSymbol,       NoSymbol,    onesuperior ] };
+	key <AE02> { [       NoSymbol,       NoSymbol,        onehalf,    twosuperior ] };
+	key <AE03> { [       NoSymbol,       NoSymbol,       sterling,  threesuperior ] };
+	key <AE04> { [       NoSymbol,       NoSymbol,     onequarter,  threequarters ] };
+	key <AE07> { [       NoSymbol,       NoSymbol,          U03F0                 ] };
+	key <AE10> { [       NoSymbol,       NoSymbol,         degree                 ] };
+};
+
+partial alphanumeric_keys alternate_group
+xkb_symbols "simple" {
+
+    include "emoji(bare)"
+
+    name[Group1] = "Emoji (simple)";
+
+    key <TLDE> { [        grave,  asciitilde ] }; // ` ~
+    key <AE01> { [            1,      exclam ] }; // 1 !
+    key <AE02> { [            2,          at ] }; // 2 @
+    key <AE03> { [            3,  numbersign ] }; // 3 #
+    key <AE04> { [            4,      dollar ] }; // 4 $
+    key <AE05> { [            5,     percent ] }; // 5 %
+    key <AE06> { [            6, asciicircum ] }; // 6 ^
+    key <AE07> { [            7,   ampersand ] }; // 7 &
+    key <AE08> { [            8,    asterisk ] }; // 8 *
+    key <AE09> { [            9,   parenleft ] }; // 9 (
+    key <AE10> { [            0,  parenright ] }; // 0 )
+    key <AE11> { [        minus,  underscore ] }; // - _
+    key <AE12> { [        equal,        plus ] }; // = +
+
+    key <AD11> { [  bracketleft,   braceleft ] }; // [ {
+    key <AD12> { [ bracketright,  braceright ] }; // ] }
+
+    key <AC11> { [   apostrophe,    quotedbl ] }; // ' "
+
+    key <AB08> { [        comma,        less ] }; // , <
+    key <AB09> { [       period,     greater ] }; // . >
+    key <AB10> { [        slash,    question ] }; // / ?
+    key <BKSL> { [    backslash,         bar ] }; // \ |
+
+    include "kpdl(comma)"
+};
+
+hidden partial alphanumeric_keys alternate_group
+xkb_symbols "bare" {
+
+    key <AD01> { [ q,         U1F600 ] }; // q 😀
+    key <AD02> { [ w,         U1F601 ] }; // w 😁
+    key <AD03> { [ e,         U1F602 ] }; // e 😂
+    key <AD04> { [ r,         U1F605 ] }; // r 😅
+    key <AD05> { [ t,         U1F606 ] }; // t 😆
+    key <AD06> { [ y,         U1F608 ] }; // y 😈
+    key <AD07> { [ u,         U1F609 ] }; // u 😉
+    key <AD08> { [ i,         U1F60A ] }; // i 😊
+    key <AD09> { [ o,         U1F60D ] }; // o 😍
+    key <AD10> { [ p,         U1F60E ] }; // p 😎
+
+    key <AC01> { [ a,         U1F610 ] }; // a 😐
+    key <AC02> { [ s,         U1F611 ] }; // s 😑
+    key <AC03> { [ d,         U1F612 ] }; // d 😒
+    key <AC04> { [ f,         U1F613 ] }; // f 😓
+    key <AC05> { [ g,         U1F61C ] }; // g 😜
+    key <AC06> { [ h,         U1F625 ] }; // h 😥
+    key <AC07> { [ j,         U1F62A ] }; // j 😪
+    key <AC08> { [ k,         U1F62D ] }; // k 😭
+    key <AC09> { [ l,         U1F641 ] }; // l 🙁
+    key <AC10> { [  semicolon, colon ] }; // ; :
+
+    key <AB01> { [ z,         U1F639 ] }; // z 😹
+    key <AB02> { [ x,         U1F63A ] }; // x 😺
+    key <AB03> { [ c,         U1F63B ] }; // c 😻
+    key <AB04> { [ v,         U1F63F ] }; // v 😿
+    key <AB05> { [ b,         U1F648 ] }; // b 🙈
+    key <AB06> { [ n,         U1F649 ] }; // n 🙉
+    key <AB07> { [ m,         U1F64A ] }; // m 🙊
+
+    key <LSGT> { [ guillemotleft, guillemotright ] }; // « »
+};
+
+// ===========================================================================================
+// Emoji Keyboard                                                                            |
+// ===========================================================================================
+//
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━━━┓
+// │ ~   │ !   │ @   │ #   │ $   │ %   │ ^   │ &   │ *   │ (   │ )   │ _   │ +   ┃Backspace  ┃
+// │ `   │ 1   │ 2   │ 3 £ │ 4   │ 5 € │ 6   │ 7   │ 8   │ 9   │ 0 ° │ - ± │ =   ┃           ┃
+// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┳━━━━━━━━━┫
+// ┃       ┃ 😀  │ 😁  │ 😂  │ 😅  │ 😆  │ 😈  │ 😉  │ 😊  │ 😍  │ 😎  │ {   │ }   ┃Enter    ┃
+// ┃Tab    ┃  q  │  w  │  e  │ r ® │  t  │  y  │  u  │  i  │  ο  │  p  │ [   │ ]   ┃         ┃
+// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┺┓        ┃
+// ┃Caps    ┃ 😐  │ 😑  │ 😒  │ 😓  │ 😜  │ 😥  │ 😪  │ 😭  │ 🙁  │ :   │ "   │ |   ┃        ┃
+// ┃Lock    ┃  α  │  s  │  d  │  f  │  g  │  h  │  j  │  k  │  l  │ ;   │ '   │ \   ┃        ┃
+// ┣━━━━━━━┳┹────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┷━━━━━┻━━━━━━━━┫
+// ┃       ┃ »   │ 😹  │ 😺  │ 😻  │ 😿  │ 🙈  │ 🙉  │ 🙊  │ <   │ >   │ ?   ┃               ┃
+// ┃Shift  ┃ «   │  z  │  x  │ c © │ v   │ b   │ n   │ m   │ , « │ . » │ /   ┃Shift          ┃
+// ┣━━━━━━━╋━━━━━┷━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴──┲━━┷━━━━┳┷━━━━━┻┳━━━━━━━┳━━━━━━┫
+// ┃       ┃       ┃       ┃                                  ┃       ┃       ┃       ┃      ┃
+// ┃Ctrl   ┃Meta   ┃Alt    ┃              Space               ┃AltGr  ┃Meta   ┃Menu   ┃Ctrl  ┃
+// ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹──────────────────────────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┻━━━━━━┛
+
+partial alphanumeric_keys alternate_group
+xkb_symbols "extended" {
+
+    include "emoji(simple)"
+
+    name[Group1] = "Emoji (extended)";
+
+    key.type[Group1] = "THREE_LEVEL";
+
+    key <AE03> { [ NoSymbol, NoSymbol,       sterling ] }; // £
+    key <AE10> { [ NoSymbol, NoSymbol,         degree ] }; // °
+    key <AE11> { [ NoSymbol, NoSymbol,      plusminus ] }; // ±
+
+    key <AD01> { [ NoSymbol, NoSymbol, periodcentered ] }; // ·
+    key <AD04> { [ NoSymbol, NoSymbol,     registered ] }; // ®
+
+    key <AB03> { [ NoSymbol, NoSymbol,      copyright ] }; // ©
+    key <AB08> { [ NoSymbol, NoSymbol,  guillemotleft ] }; // «
+    key <AB09> { [ NoSymbol, NoSymbol, guillemotright ] }; // »
+
+    include "level3(ralt_switch)"
+    include "eurosign(5)"
+    include "eurosign(e)"
+};
+
+partial alphanumeric_keys alternate_group
+xkb_symbols "polytonic" {
+
+    include "emoji(extended)"
+
+    name[Group1] = "Emoji (polytonic)";
+
+    key.type[Group1] = "THREE_LEVEL";
+
+    key <AD11> { [ dead_tilde, dead_diaeresis, dead_macron ] }; // ~ ¨ ¯
+    key <AD12> { [  dead_iota,     VoidSymbol,  dead_breve ] }; // ͺ   ˘
+
+    key <AC10> { [ dead_acute, dead_psili  ] }; // ´ ̓ 
+    key <AC11> { type[Group1]="FOUR_LEVEL",
+                 [ dead_grave, dead_dasia, apostrophe, quotedbl  ] };
+                 // ` ̔  ' "
+};
+
+partial alphanumeric_keys alternate_group
+xkb_symbols "nodeadkeys" {
+
+    include "emoji(simple)"
+
+    name[Group1] = "Emoji (no dead keys)";
+
+    key <AC10> { [ semicolon, colon ] }; // ; :
+};
+
+// EXTRAS:
+
+partial alphanumeric_keys
+	xkb_symbols "sun_type6" {
+	include "sun_vndr/gr(sun_type6)"
+};
